@@ -6,7 +6,11 @@ const lineNotify = require("line-notify-nodejs")(process.env.LINE_TOKEN);
 let index = 0;
 
 const send_task = () => {
-  const date_now = new Date().toLocaleDateString();
+  const date_now = new Date().toLocaleDateString('th-TH', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
   const index_new = index % people.length;
 
   const message = `วันนี้ (${date_now}) เป็นเวรประจำวันของ ${people[index_new].name}`;
