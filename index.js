@@ -43,6 +43,7 @@ app.get("/", (req, res) => {
   const data = {
     index,
     now_people: people[index].name,
+    time_set,
     people,
   };
 
