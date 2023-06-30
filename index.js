@@ -17,7 +17,7 @@ const send_task = () => {
 const loop = setInterval(() => {
   const date = new Date();
   const time_now = date.toLocaleTimeString();
-  const time_set = "17:48:00";
+  const time_set = process.env.TIME_TO_SEND;
 
   if (time_now === time_set) {
     send_task();
