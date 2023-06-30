@@ -4,7 +4,7 @@ const people = require("./people.json");
 const Message = require("./modules/send_message");
 const Sticker = require("./modules/send_sticker");
 
-let index = process.env.INDEX;
+let index = 0;
 
 const send_task = () => {
   const date_now = new Date().toLocaleDateString();
@@ -24,3 +24,43 @@ const loop = setInterval(() => {
     index++;
   }
 }, 1000);
+
+const express = require('express')
+const app = express()
+
+app.use(express.json())
+
+app.get("/" , (req , res) => {
+
+    const data = {
+        index,
+        now_people: people[index].name,
+        people,
+    }
+
+    res.send(data)
+
+})
+
+
+app.post("/index" , (req , res) => {
+
+    const index_input = req.body.index
+    
+    index = index_input
+
+    res.json("OK")
+
+
+})
+
+app.get("/send" , (req , res) => {
+
+    send_task()
+
+    res.json("OK")
+
+
+})
+
+app.listen(1392 , () => console.log("Server is running..."))
