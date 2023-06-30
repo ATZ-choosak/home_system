@@ -4,6 +4,7 @@ const people = require("./people.json");
 const lineNotify = require("line-notify-nodejs")(process.env.LINE_TOKEN);
 
 let index = 0;
+let time_set = "08:00:00"
 
 const send_task = () => {
   const date_now = new Date().toLocaleDateString('th-TH', {
@@ -26,7 +27,6 @@ const send_task = () => {
 const loop = setInterval(() => {
   const date = new Date();
   const time_now = date.toLocaleTimeString();
-  const time_set = process.env.TIME_TO_SEND;
 
   if (time_now === time_set) {
     send_task();
