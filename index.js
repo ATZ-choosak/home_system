@@ -4,13 +4,13 @@ const people = require("./people.json");
 const lineNotify = require("line-notify-nodejs")(process.env.LINE_TOKEN);
 
 let index = 0;
-let time_set = "08:00:00"
+let time_set = "08:00:00";
 
 const send_task = () => {
-  const date_now = new Date().toLocaleDateString('th-TH', {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
+  const date_now = new Date().toLocaleDateString("th-TH", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
   });
   const index_new = index % people.length;
 
@@ -54,6 +54,14 @@ app.post("/index", (req, res) => {
   const index_input = req.body.index;
 
   index = index_input;
+
+  res.json("OK");
+});
+
+app.post("/time_set", (req, res) => {
+  const time_set_input = req.body.time_set;
+
+  time_set = time_set_input;
 
   res.json("OK");
 });
